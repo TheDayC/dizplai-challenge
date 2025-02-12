@@ -10,7 +10,7 @@
         "prettier": "prettier ./src --write",
         "lint": "eslint .",
         "lint:staged": "lint-staged",
-        "prisma:init": "prisma migrate dev --name init",
+        "prisma:init": "prisma generate && prisma migrate dev --name init",
         "prisma:seed": "prisma db seed"
     },
     "keywords": [],

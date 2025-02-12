@@ -13,13 +13,13 @@ In the parent directory ensure the database container is up and running:
 npm run docker
 ```
 
-When the database is up and running you may want to halt the API and UI containers during development. When you're happy with the development set up you can execute the database initialisation script in this directory:
+When the database is up and running you may want to halt the API and UI containers during development. When you're happy with the development set up you can execute the database initialisation script in this directory. This runs the prisma generate command and the prisma migration commands:
 
 ```bash
 npm run prisma:init
 ```
 
-Then seed the database with the seed script:
+Next, you can optionally seed the database with the seed script, I'd advise doing this on initial setup to have some initial data available during development:
 
 ```bash
 npm run prisma:seed
@@ -33,7 +33,7 @@ To run this application in development mode simply run the following command in 
 npm run dev
 ```
 
-# Production Build
+## Production Build
 
 To build this application for production run:
 
@@ -46,3 +46,7 @@ To view the production build run:
 ```bash
 npm run start
 ```
+
+## Endpoints
+
+There are a variety of endpoints that can be accessed in this API, I've detailed these in the [API.md](./API.md) file.
