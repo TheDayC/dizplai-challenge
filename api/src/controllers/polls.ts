@@ -1,66 +1,64 @@
 import { z } from 'zod';
 import { NextFunction, Request, Response } from 'express';
-// import { v4 as uuidv4 } from 'uuid';
+import { PrismaClient } from '@prisma/client';
 
-import { readDB, writeDB } from '../services/database';
 import { pollSchema } from '../utils/schemas';
 
-export const getPolls = (req: Request, res: Response, next: NextFunction) => {
+const prisma = new PrismaClient();
+
+export const listPolls = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const db = readDB();
-        const polls = z.array(pollSchema).parse(db.polls); // Parse the polls object from the JSON as a specific poll schema.
+        const polls = await prisma.polls.findMany();
 
         res.status(200).json(polls);
     } catch (err) {
-        next(err); // Catch the error, send to the logger and move on.
+        next(err);
     }
 };
 
-export const getPollById = (req: Request, res: Response, next: NextFunction) => {
+export const createPoll = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const db = readDB(); // Read all DB entries, we'd filter this with a query in a real database.
-        const id = z.string().parse(req.params.id); // Parse the id sent in the request as a number.
-        const polls = z.array(pollSchema).parse(db.polls); // Parse the polls object from the JSON as a specific poll schema.
-        const poll = polls.find((e) => e.id === id); // Find the poll requested by id.
+        const data = pollSchema.parse(req.body);
+        const { name, date, options } = data;
 
-        // Should the poll exist then return it, else inform the UI that it doesn't exist.
-        if (poll) {
-            res.status(200).json(poll);
-        } else {
-            res.status(404).json({ message: 'Event not found' });
-        }
+        const poll = await prisma.polls.create({
+            data: {
+                name,
+                date: new Date(date),
+                options,
+            },
+        });
+
+        res.status(201).json(poll);
     } catch (err) {
-        next(err); // Catch the error, send to the logger and move on.
+        next(err);
     }
 };
 
-export const getPollVotes = (req: Request, res: Response, next: NextFunction) => {
+export const getPollVotes = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const db = readDB(); // Read all DB entries, we'd filter this with a query in a real database.
-        const id = z.string().parse(req.params.id); // Parse the id sent in the request as a number.
-        const polls = z.array(pollSchema).parse(db.polls); // Parse the polls object from the JSON as a specific poll schema.
-        const poll = polls.find((e) => e.id === id); // Find the poll requested by id.
+        const pollId = z.coerce.number().parse(req.params.id);
 
-        // Should the poll exist then return it, else inform the UI that it doesn't exist.
-        if (poll) {
-            res.status(200).json(poll);
-        } else {
-            res.status(404).json({ message: 'Event not found' });
-        }
+        const votes = await prisma.votes.findMany({
+            where: { pollId },
+        });
+
+        res.status(200).json(votes);
     } catch (err) {
-        next(err); // Catch the error, send to the logger and move on.
+        next(err);
     }
 };
 
-export const createPoll = (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const db = readDB();
+// On CTRL + C, tidy up the Prisma connection to avoid memory leaks.
+process.on('SIGINT', async () => {
+    console.log('🎬 Shutting down server...');
+    await prisma.$disconnect();
+    process.exit(0);
+});
 
-        // Write the newly modified db object back to the json file.
-        writeDB(db);
-
-        res.status(201).json({ message: 'Event created!' });
-    } catch (err) {
-        next(err); // Catch the error, send to the logger and move on.
-    }
-};
+// On a linux kill command, tidy up the Prisma connection to avoid memory leaks.
+process.on('SIGTERM', async () => {
+    console.log('⛔️ Server terminated...');
+    await prisma.$disconnect();
+    process.exit(0);
+});

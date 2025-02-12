@@ -7,8 +7,6 @@
         "dev": "nodemon --exec tsx src/index.ts",
         "build": "tsc",
         "start": "node dist/index.js",
-        "predev": "node ./scripts/seed-db.mjs",
-        "prebuild": "node ./scripts/seed-db.mjs",
         "prettier": "prettier ./src --write",
         "lint": "eslint .",
         "lint:staged": "lint-staged",
@@ -23,7 +21,6 @@
         "cors": "^2.8.5",
         "express": "^5.0.1",
         "prisma": "^6.3.1",
-        "uuid": "^11.0.5",
         "winston": "^3.17.0",
         "zod": "^3.24.1"
     },
