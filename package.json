@@ -1,7 +1,7 @@
 {
     "name": "dizplai-challenge",
     "version": "1.0.0",
-    "description": "A full stack event application for Kaboode's developer challenge.",
+    "description": "A full stack voting application for Dizplai's developer challenge.",
     "main": "index.js",
     "scripts": {
         "prepare": "husky",
