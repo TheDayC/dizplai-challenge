@@ -25,3 +25,19 @@ To preview the production application once built run:
 ```bash
 npm run preview
 ```
+
+## Testing
+
+Testing is done via Vitest, React Testing Library and MSW in order to mock requests to the endpoints.
+
+To test the system once run:
+
+```bash
+npm run test
+```
+
+To test the system in watch mode while developing run:
+
+```bash
+npm run test:watch
+```

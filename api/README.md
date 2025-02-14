@@ -51,6 +51,22 @@ To view the production build run:
 npm run start
 ```
 
+## Testing
+
+Testing is done via Jest and MSW in order to mock requests to the endpoints.
+
+To test the system once run:
+
+```bash
+npm run test
+```
+
+To test the system in watch mode while developing run:
+
+```bash
+npm run test:watch
+```
+
 ## Endpoints
 
 There are a variety of endpoints that can be accessed in this API, I've detailed these in the [API.md](./API.md) file.
