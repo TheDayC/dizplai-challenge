@@ -1,15 +1,15 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
-  palette: {
-    mode: "light",
-    primary: {
-      main: "#6f1deb",
+    palette: {
+        mode: 'light',
+        primary: {
+            main: '#8f6aed',
+        },
     },
-  },
-  typography: {
-    fontFamily: "'Roboto', sans-serif",
-  },
+    typography: {
+        fontFamily: "'Roboto', sans-serif",
+    },
 });
 
 export default theme;

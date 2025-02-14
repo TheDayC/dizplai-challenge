@@ -16,6 +16,17 @@ export const listPolls = async (req: Request, res: Response, next: NextFunction)
     }
 };
 
+export const getPoll = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const id = z.coerce.number().parse(req.params.id);
+        const poll = await prisma.polls.findFirst({ where: { id } });
+
+        res.status(200).json(poll);
+    } catch (err) {
+        next(err);
+    }
+};
+
 export const createPoll = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const data = pollSchema.parse(req.body);

@@ -46,6 +46,35 @@ For the creation of this API I've added several endpoints, those requested in th
         ]
     ```
 
+### **Get poll**
+**Endpoint:** `GET /polls/:id`
+**Description:** Retrieves a single poll by its id.
+
+#### **Request**
+- **Method:** `GET`
+- **URL:** `/polls/:id`
+- **URL Parameter:** 
+    - `id`: The unique identifier of the poll.
+- **Headers:**  
+    ```json
+    {
+        "Content-Type": "application/json"
+    }
+    ```
+- **Response Code:** `200 OK` 
+- **Example Response:**  
+    ```json
+        {
+            "id": 1,
+            "name": "Who will win the Superbowl?",
+            "date": "2025-02-11T20:55:40.023Z",
+            "options": [
+                "Kansas City Chiefs",
+                "Philadelphia Eagles"
+            ]
+        },
+    ```
+
 ### **Create poll**
 **Endpoint:** `POST /polls/new`  
 **Description:** Create a new poll. 
