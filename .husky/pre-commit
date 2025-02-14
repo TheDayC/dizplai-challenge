@@ -1,2 +1,4 @@
+echo '👀 Checking UI for unused items...'
+npm run knip:ui
 npm run lint:staged:api
 npm run lint:staged:ui

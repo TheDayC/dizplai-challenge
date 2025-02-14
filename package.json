@@ -7,6 +7,7 @@
         "prepare": "husky",
         "lint:staged:api": "npm --prefix ./api/ run lint:staged",
         "lint:staged:ui": "npm --prefix ./ui/ run lint:staged",
+        "knip:ui": "npm --prefix ./ui/ run knip",
         "test": "echo \"Error: no test specified\" && exit 1",
         "docker": "docker compose up -d"
     },
@@ -23,11 +24,10 @@
     "devDependencies": {
         "@commitlint/cli": "^19.7.1",
         "@commitlint/config-conventional": "^19.7.1",
-        "husky": "^9.1.7",
-        "lint-staged": "^15.4.3"
+        "husky": "^9.1.7"
     },
     "volta": {
-      "node": "22.13.1",
-      "npm": "11.1.0"
+        "node": "22.13.1",
+        "npm": "11.1.0"
     }
 }
