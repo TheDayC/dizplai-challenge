@@ -20,3 +20,5 @@ app.use('/votes', voteRoutes);
 app.listen(PORT, () => {
     logger.info(`🚀 Server running on http://localhost:${PORT}`);
 });
+
+export default app;

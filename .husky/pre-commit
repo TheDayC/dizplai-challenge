@@ -9,5 +9,11 @@ if git diff --cached --name-only | grep -q '^ui/'; then
 fi
 
 if git diff --cached --name-only | grep -q '^api/'; then
+    echo '👀 Checking API for unused items...'
+    npm run knip:api
+
+    echo '🔧 Testing the API...'
+    npm run test:api
+
     npm run lint:staged:api
 fi
