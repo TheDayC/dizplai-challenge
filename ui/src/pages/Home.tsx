@@ -112,8 +112,13 @@ const HomePage: FC = () => {
                                                                     {...field}
                                                                     value={option}
                                                                     sx={{ color: 'white' }}
+                                                                    data-testid={`radio-${option}`}
+                                                                    inputProps={{
+                                                                        role: 'radio',
+                                                                    }}
                                                                 />
                                                             }
+                                                            value={option}
                                                             label={option}
                                                             sx={{ color: 'white' }}
                                                         />
@@ -125,7 +130,12 @@ const HomePage: FC = () => {
                                     </FormControl>
                                 </Stack>
                                 <Stack direction="row" justifyContent="space-between">
-                                    <Button type="submit" variant="contained" startIcon={<HowToVote />}>
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        startIcon={<HowToVote />}
+                                        data-testid="voteBtn"
+                                    >
                                         Vote
                                     </Button>
                                 </Stack>

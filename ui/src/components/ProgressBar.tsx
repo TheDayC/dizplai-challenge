@@ -28,12 +28,20 @@ interface LinearProgressWithLabel extends LinearProgressProps {
 }
 
 const LinearProgressWithLabel: FC<LinearProgressWithLabel> = (props) => (
-    <Box sx={{ width: '100%', position: 'relative' }}>
+    <Box sx={{ width: '100%', position: 'relative' }} data-testid="resultContainer">
         <LinearProgress {...props} variant="determinate" sx={{ height: 50 }} />
-        <Typography variant="body2" sx={{ color: 'white', position: 'absolute', top: 'calc(50% - 10px)', left: 10 }}>
+        <Typography
+            variant="body2"
+            sx={{ color: 'white', position: 'absolute', top: 'calc(50% - 10px)', left: 10 }}
+            data-testid="resultName"
+        >
             {props.optionname}
         </Typography>
-        <Typography variant="body2" sx={{ color: 'white', position: 'absolute', top: 'calc(50% - 10px)', right: 10 }}>
+        <Typography
+            variant="body2"
+            sx={{ color: 'white', position: 'absolute', top: 'calc(50% - 10px)', right: 10 }}
+            data-testid="result"
+        >
             {`${Math.round(props.value)}%`}
         </Typography>
     </Box>

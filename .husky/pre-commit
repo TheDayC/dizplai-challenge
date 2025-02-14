@@ -1,4 +1,19 @@
-echo '👀 Checking UI for unused items...'
-npm run knip:ui
-npm run lint:staged:api
-npm run lint:staged:ui
+if git diff --cached --name-only | grep -q '^ui/'; then
+    echo '👀 Checking UI for unused items...'
+    npm run knip:ui
+
+    echo '🔧 Testing the UI...'
+    npm run test:ui
+
+    npm run lint:staged:ui
+fi
+
+if git diff --cached --name-only | grep -q '^api/'; then
+    echo '👀 Checking API for unused items...'
+    npm run knip:api
+
+    echo '🔧 Testing the API...'
+    npm run test:api
+
+    npm run lint:staged:api
+fi

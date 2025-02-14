@@ -23,7 +23,7 @@ When the database is up and running you may want to halt the API and UI containe
 npm run prisma:init
 ```
 
-Next, you can optionally seed the database with the seed script, I'd advise doing this on initial setup to have some initial data available during development:
+(Optional) You can seed the database with the seed script in the future. This script will automatically run as part of the prisma:init script:
 
 ```bash
 npm run prisma:seed
@@ -49,6 +49,22 @@ To view the production build run:
 
 ```bash
 npm run start
+```
+
+## Testing
+
+Testing is done via Jest and MSW in order to mock requests to the endpoints.
+
+To test the system once run:
+
+```bash
+npm run test
+```
+
+To test the system in watch mode while developing run:
+
+```bash
+npm run test:watch
 ```
 
 ## Endpoints
