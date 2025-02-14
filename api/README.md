@@ -13,7 +13,7 @@ In the parent directory ensure the database container is up and running:
 npm run docker
 ```
 
-For connection via the API's Prisma dependency you will need to copy the contents of `.env.example` to a new `.env` file then replace the square bracket values with the the appropriate ones found in the docker-compose.yml.
+For connection via the API's Prisma dependency you will need to copy the contents of `.env.example` to a new `.env` file then replace the square bracket values with the the appropriate ones found in the docker-compose.yml. When creating `.env` notice that there is a choice between protocols, `localhost` is for development, `host.docker.internal` is for building the docker containers and have them all interact with each other.
 
 _**Note:** This process is bad practice and these values would normally be stored in a secret manager but, for the sake of speed and the lack of data sensitivity for this challenge I've left them freely available._
 
