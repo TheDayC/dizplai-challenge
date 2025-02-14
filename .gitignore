@@ -133,4 +133,4 @@ dist
 .DS_Store
 
 # Database
-prisma/migrations
+api/prisma/migrations/*
