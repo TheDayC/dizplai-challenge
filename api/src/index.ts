@@ -1,10 +1,10 @@
-import express from "express";
-import cors from "cors";
-import * as entries from "./db/entries.json";
+import express from 'express';
+import cors from 'cors';
 
-import pollRoutes from "./routes/polls";
-import logger from "./utils/logger";
-import { errorLogger, requestLogger } from "./middleware/logger";
+import pollRoutes from './routes/polls';
+import voteRoutes from './routes/votes';
+import logger from './utils/logger';
+import { errorLogger, requestLogger } from './middleware/logger';
 
 const app = express();
 const PORT = 3001;
@@ -14,9 +14,9 @@ app.use(express.json());
 app.use(requestLogger);
 app.use(errorLogger);
 
-app.use("/polls", pollRoutes);
+app.use('/polls', pollRoutes);
+app.use('/votes', voteRoutes);
 
 app.listen(PORT, () => {
-  logger.info(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(entries);
+    logger.info(`🚀 Server running on http://localhost:${PORT}`);
 });

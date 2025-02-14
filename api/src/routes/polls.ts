@@ -1,11 +1,10 @@
-import express from "express";
-import { getPolls, getPollById, createPoll } from "../controllers/events";
+import express from 'express';
+import { listPolls, createPoll, getPollVotes } from '../controllers/polls';
 
 const router = express.Router();
 
-router.get("/", getPolls);
-router.get("/:id", getPollById);
-router.get("/:id/votes", getPollById);
-router.post("/new", createPoll);
+router.get('/list', listPolls);
+router.post('/new', createPoll);
+router.get('/:id/votes', getPollVotes);
 
 export default router;
