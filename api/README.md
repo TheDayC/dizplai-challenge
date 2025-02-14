@@ -13,6 +13,10 @@ In the parent directory ensure the database container is up and running:
 npm run docker
 ```
 
+For connection via the API's Prisma dependency you will need to copy the contents of `.env.example` to a new `.env` file then replace the square bracket values with the the appropriate ones found in the docker-compose.yml.
+
+_**Note:** This process is bad practice and these values would normally be stored in a secret manager but, for the sake of speed and the lack of data sensitivity for this challenge I've left them freely available._
+
 When the database is up and running you may want to halt the API and UI containers during development. When you're happy with the development set up you can execute the database initialisation script in this directory. This runs the prisma generate command and the prisma migration commands:
 
 ```bash
